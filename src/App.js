@@ -1,5 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import * as Sentry from "@sentry/react";
+
+
+function test(){
+  this.clearLocalStorage();
+  this.timer = setTimeout(function() {
+    this.clearBoard();    // what is "this"?
+  }, 0);
+}
 
 function App() {
   return (
@@ -7,7 +16,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <button onClick={test}>Break the world</button>;
         </p>
         <a
           className="App-link"
@@ -22,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sentry.withProfiler(App);
